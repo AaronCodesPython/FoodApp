@@ -21,7 +21,7 @@ class _TabsScreeenState extends State<TabsScreeen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
         unselectedItemColor: Colors.black54,
-        selectedItemColor: Colors.black45,
+        selectedItemColor: Colors.black87,
         onTap: (int index) {
           setState(() {
             _selectedPageIndex = index;
