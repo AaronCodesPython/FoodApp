@@ -2,6 +2,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import "package:flutter/material.dart";
 import "../widgets/dummy_data.dart";
+import "./filters_screen.dart";
 
 class SingleMealScreen extends StatelessWidget {
   const SingleMealScreen({Key? key}) : super(key: key);
@@ -80,7 +81,7 @@ class SingleMealScreen extends StatelessWidget {
                                         .titleMedium)),
                             title: Text(selectedMeal.steps[index],
                                 style: Theme.of(context).textTheme.bodyMedium)),
-                        Divider(
+                        const Divider(
                           color: Colors.white60,
                           height:
                               3, // TODO remove later to scale for different sizes
