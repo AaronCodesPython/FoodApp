@@ -1,8 +1,5 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import "package:flutter/material.dart";
 import 'package:foodapp/screens/filters_screen.dart';
-import 'package:foodapp/screens/tabs_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -31,12 +28,12 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             height: 120,
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.bottomLeft,
-            child: Text(
+            child: const Text(
               "Cooking up!",
               style: TextStyle(
                   fontWeight: FontWeight.w900,
@@ -48,12 +45,10 @@ class MainDrawer extends StatelessWidget {
             height: 20,
           ),
           buildListTile("Meals", Icons.restaurant, () {
-            print("PUSHNAMED/");
             Navigator.of(context).pushReplacementNamed("/");
           }),
           buildListTile("Filters", Icons.settings, () {
-            print("PUSHNAMED/FILteRS");
-            Navigator.of(context).pushReplacementNamed(filterScreen.RouteName);
+            Navigator.of(context).pushReplacementNamed(FilterScreen.routeName);
           })
         ],
       ),

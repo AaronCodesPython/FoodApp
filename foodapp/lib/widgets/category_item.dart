@@ -1,27 +1,30 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// ignore: file_names
 import "package:flutter/material.dart";
 import '../screens/category_info_screen.dart';
 
-class categoryItem extends StatelessWidget {
+class CategoryItem extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final title;
+  // ignore: prefer_typing_uninitialized_variables
   final bgColor;
-  final Id;
+  // ignore: prefer_typing_uninitialized_variables
+  final id;
 
   final BorderRadius br = BorderRadius.circular(15);
 
-  categoryItem({required this.title, required this.bgColor, required this.Id});
-
-  void SelectCategory(BuildContext ctx) {
+  CategoryItem(
+      {Key? key, required this.title, required this.bgColor, required this.id})
+      : super(key: key);
+  void selectCategory(BuildContext ctx) {
     //pushes new page on Page-Stack
-    Navigator.of(ctx).pushNamed(category_info.routeName,
-        arguments: {"Id": Id, "title": title, "bgColor": bgColor});
+    Navigator.of(ctx).pushNamed(CategoryInfo.routeName,
+        arguments: {"Id": id, "title": title, "bgColor": bgColor});
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => SelectCategory(context),
+      onTap: () => selectCategory(context),
       splashColor: Theme.of(context).primaryColor,
       borderRadius: br,
       child: Container(

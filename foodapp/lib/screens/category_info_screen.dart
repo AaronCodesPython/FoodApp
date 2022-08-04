@@ -2,8 +2,10 @@ import "package:flutter/material.dart";
 import '../widgets/dummy_data.dart';
 import "../widgets/meal_item.dart";
 
-class category_info extends StatelessWidget {
+class CategoryInfo extends StatelessWidget {
   static const routeName = "/category_meals";
+
+  const CategoryInfo({Key? key}) : super(key: key);
   //final categoryClickedID;
   //final categoryClickedTitle;
   //final bgColor;
@@ -30,7 +32,7 @@ class category_info extends StatelessWidget {
         ),
         body: ListView.builder(
           itemBuilder: (ctx, index) {
-            return mealItem(
+            return MealItem(
               id: filteredMeals[index].id,
               title: filteredMeals[index].title,
               imageURL: filteredMeals[index].imageUrl,

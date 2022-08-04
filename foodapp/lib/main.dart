@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/category_info_screen.dart';
 import 'screens/category_info_screen.dart';
-import 'screens/categories_screen.dart';
 import "./screens/single_meal_screen.dart";
 import "./screens/tabs_screen.dart";
 import "./screens/filters_screen.dart";
@@ -17,8 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          primarySwatch: Colors.yellow,
-          accentColor: Colors.amber,
+          primaryColor: Colors.yellow,
           canvasColor: const Color.fromRGBO(18, 18, 18, 1),
           fontFamily: "Raleway",
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -29,13 +27,15 @@ class MyApp extends StatelessWidget {
                   fontSize: 24,
                   fontFamily: "RobotoCondensed",
                   color: Color.fromRGBO(250, 250, 220, 1),
-                  fontWeight: FontWeight.bold))),
+                  fontWeight: FontWeight.bold)),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.yellow)
+              .copyWith(secondary: Colors.amber)),
       //initialRoute: "/",
       routes: {
         "/": (ctx) => const TabsScreeen(),
-        category_info.routeName: (ctx) => category_info(),
-        SingleMealScreen.route_name: (ctx) => const SingleMealScreen(),
-        filterScreen.RouteName: (ctx) => filterScreen()
+        CategoryInfo.routeName: (ctx) => const CategoryInfo(),
+        SingleMealScreen.routeName: (ctx) => const SingleMealScreen(),
+        FilterScreen.routeName: (ctx) => const FilterScreen()
       },
     );
   }

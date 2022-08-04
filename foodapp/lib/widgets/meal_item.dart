@@ -1,10 +1,8 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import "package:flutter/material.dart";
 import '../models/meal.dart';
 import "../screens/single_meal_screen.dart";
 
-class mealItem extends StatelessWidget {
+class MealItem extends StatelessWidget {
   final String title;
   final String id;
   final String imageURL;
@@ -13,7 +11,8 @@ class mealItem extends StatelessWidget {
   final Affordability affordability;
   final Color backgroundColor;
 
-  mealItem(
+  // ignore: use_key_in_widget_constructors
+  const MealItem(
       {required this.title,
       required this.id,
       required this.imageURL,
@@ -24,40 +23,31 @@ class mealItem extends StatelessWidget {
 
   String get complexityText {
     switch (complexity) {
-      case Complexity.Beginner:
+      case Complexity.beginner:
         return "Beginner";
-        break;
-      case Complexity.Intermediate:
+      case Complexity.intermediate:
         return "Intermediate";
-        break;
-      case Complexity.Expert:
+      case Complexity.expert:
         return "Expert";
-        break;
-      case Complexity.Chefcook:
+      case Complexity.chefcook:
         return "Chefcook";
-        break;
       default:
         return "Error";
     }
   }
 
-  String get AffordabilityText {
+  String get affordabilityText {
     switch (affordability) {
       case Affordability.reallyaffordable:
         return "\$";
-        break;
       case Affordability.affordable:
         return "\$\$";
-        break;
       case Affordability.medium:
         return "\$\$\$";
-        break;
       case Affordability.pricey:
         return "\$\$\$\$";
-        break;
       case Affordability.reallypricey:
         return "\$\$\$\$\$";
-        break;
       default:
         return "Error! :O";
     }
@@ -67,7 +57,7 @@ class mealItem extends StatelessWidget {
     Map<String, dynamic> args = {"id": id, "backgroundColor": backgroundColor};
 
     Navigator.of(context)
-        .pushNamed(SingleMealScreen.route_name, arguments: args);
+        .pushNamed(SingleMealScreen.routeName, arguments: args);
   }
 
   @override
@@ -96,13 +86,14 @@ class mealItem extends StatelessWidget {
                       bottom: 20,
                       right: 10,
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 20),
                         color: Colors.black54,
                         width: 300,
                         child: Text(
                           title,
-                          style: TextStyle(fontSize: 26, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 26, color: Colors.white),
                           softWrap: true,
                           overflow: TextOverflow.fade,
                         ),
@@ -111,31 +102,31 @@ class mealItem extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.access_time_filled),
-                          SizedBox(width: 6),
+                          const Icon(Icons.access_time_filled),
+                          const SizedBox(width: 6),
                           Text("$duration min",
                               style: Theme.of(context).textTheme.bodySmall)
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(Icons.work),
-                          SizedBox(width: 6),
+                          const Icon(Icons.work),
+                          const SizedBox(width: 6),
                           Text(complexityText,
                               style: Theme.of(context).textTheme.bodySmall)
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(Icons.account_balance_wallet),
-                          SizedBox(width: 6),
-                          Text(AffordabilityText,
+                          const Icon(Icons.account_balance_wallet),
+                          const SizedBox(width: 6),
+                          Text(affordabilityText,
                               style: Theme.of(context).textTheme.bodySmall)
                         ],
                       )

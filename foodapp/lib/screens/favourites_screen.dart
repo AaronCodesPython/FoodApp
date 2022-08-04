@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 
-class favouritesScreen extends StatelessWidget {
-  const favouritesScreen({Key? key}) : super(key: key);
+class FavouritesScreen extends StatelessWidget {
+  const FavouritesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("ABCDEFG"));
+    return const Center(child: Text("ABCDEFG"));
   }
 }

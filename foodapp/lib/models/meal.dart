@@ -1,4 +1,4 @@
-enum Complexity { Beginner, Intermediate, Expert, Chefcook }
+enum Complexity { beginner, intermediate, expert, chefcook }
 
 enum Affordability {
   reallyaffordable,

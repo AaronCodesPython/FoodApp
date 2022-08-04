@@ -1,8 +1,6 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import '../widgets/dummy_data.dart';
-import '../widgets/categoryItem.dart';
+import "../widgets/category_Item.dart";
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -19,8 +17,8 @@ class CategoriesScreen extends StatelessWidget {
       ),
       children: [
         ...DUMMY_CATEGORIES
-            .map((dataPoint) => categoryItem(
-                  Id: dataPoint.id,
+            .map((dataPoint) => CategoryItem(
+                  id: dataPoint.id,
                   bgColor: dataPoint.bgColor,
                   title: dataPoint.title,
                 ))

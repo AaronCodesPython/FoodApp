@@ -10,15 +10,18 @@ class TabsScreeen extends StatefulWidget {
 }
 
 class _TabsScreeenState extends State<TabsScreeen> {
-  final List<Widget> pages = [CategoriesScreen(), favouritesScreen()];
+  final List<Widget> pages = [
+    const CategoriesScreen(),
+    const FavouritesScreen()
+  ];
   int _selectedPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("FoodApp"),
+        title: const Text("FoodApp"),
       ),
-      drawer: MainDrawer(),
+      drawer: const MainDrawer(),
       body: pages[_selectedPageIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
