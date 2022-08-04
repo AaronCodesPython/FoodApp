@@ -9,8 +9,25 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> filters = {
+    "gluten": false,
+    "lactose": false,
+    "vegetarian": false,
+    "vegan": false
+  };
+
+  void _setFilters(Map<String, bool> filterData) {
+    print("HELLO IR WORKS!");
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +52,8 @@ class MyApp extends StatelessWidget {
         "/": (ctx) => const TabsScreeen(),
         CategoryInfo.routeName: (ctx) => const CategoryInfo(),
         SingleMealScreen.routeName: (ctx) => const SingleMealScreen(),
-        FilterScreen.routeName: (ctx) => const FilterScreen()
+        FilterScreen.routeName: (ctx) =>
+            FilterScreen(_setFilters as VoidCallback)
       },
     );
   }

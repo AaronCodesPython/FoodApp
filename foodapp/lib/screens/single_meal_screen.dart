@@ -34,60 +34,65 @@ class SingleMealScreen extends StatelessWidget {
     final selectedMeal =
         DUMMY_MEALS.firstWhere((element) => element.id == mealId);
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: backgroundColor,
-          title: Text(
-            selectedMeal.title,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        title: Text(
+          selectedMeal.title,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
-        body: SingleChildScrollView(
+      ),
+      body: SingleChildScrollView(
           child: Column(
-            children: [
-              SizedBox(
-                  height: 300,
-                  width: double.infinity,
-                  child: Image.network(selectedMeal.imageUrl)),
-              buildSectionTitle(context, "Ingredients"),
-              buildContainer(ListView.builder(
-                  itemCount: selectedMeal.ingredients.length,
-                  itemBuilder: (ctx, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Card(
-                        color: backgroundColor,
-                        child: Container(
-                            padding: const EdgeInsets.all(10),
-                            child: Center(
-                                child: Text(selectedMeal.ingredients[index]))),
-                      ),
-                    );
-                  })),
-              buildSectionTitle(context, "Steps"),
-              buildContainer(ListView.builder(
-                  itemCount: selectedMeal.steps.length,
-                  itemBuilder: (ctx, index) {
-                    return Column(
-                      children: [
-                        ListTile(
-                            leading: CircleAvatar(
-                                backgroundColor: backgroundColor,
-                                child: Text("${index + 1}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium)),
-                            title: Text(selectedMeal.steps[index],
-                                style: Theme.of(context).textTheme.bodyMedium)),
-                        const Divider(
-                          color: Colors.white60,
-                          height: 3,
-                          thickness: 1,
-                        )
-                      ],
-                    );
-                  }))
-            ],
-          ),
-        ));
+        children: [
+          SizedBox(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(selectedMeal.imageUrl)),
+          buildSectionTitle(context, "Ingredients"),
+          buildContainer(ListView.builder(
+              itemCount: selectedMeal.ingredients.length,
+              itemBuilder: (ctx, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Card(
+                    color: backgroundColor,
+                    child: Container(
+                        padding: const EdgeInsets.all(10),
+                        child: Center(
+                            child: Text(selectedMeal.ingredients[index]))),
+                  ),
+                );
+              })),
+          buildSectionTitle(context, "Steps"),
+          buildContainer(ListView.builder(
+              itemCount: selectedMeal.steps.length,
+              itemBuilder: (ctx, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                        leading: CircleAvatar(
+                            backgroundColor: backgroundColor,
+                            child: Text("${index + 1}",
+                                style:
+                                    Theme.of(context).textTheme.titleMedium)),
+                        title: Text(selectedMeal.steps[index],
+                            style: Theme.of(context).textTheme.bodyMedium)),
+                    const Divider(
+                      color: Colors.white60,
+                      height: 3,
+                      thickness: 1,
+                    )
+                  ],
+                );
+              }))
+        ],
+      )),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).pop(mealId);
+          },
+          backgroundColor: backgroundColor,
+          child: const Icon(Icons.delete)),
+    );
   }
 }

@@ -10,6 +10,7 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
   final Color backgroundColor;
+  final Function removeItem;
 
   // ignore: use_key_in_widget_constructors
   const MealItem(
@@ -19,7 +20,8 @@ class MealItem extends StatelessWidget {
       required this.duration,
       required this.complexity,
       required this.affordability,
-      required this.backgroundColor});
+      required this.backgroundColor,
+      required this.removeItem});
 
   String get complexityText {
     switch (complexity) {
@@ -57,7 +59,12 @@ class MealItem extends StatelessWidget {
     Map<String, dynamic> args = {"id": id, "backgroundColor": backgroundColor};
 
     Navigator.of(context)
-        .pushNamed(SingleMealScreen.routeName, arguments: args);
+        .pushNamed(SingleMealScreen.routeName, arguments: args)
+        .then((result) {
+      if (result != null) {
+        removeItem(result);
+      }
+    });
   }
 
   @override
