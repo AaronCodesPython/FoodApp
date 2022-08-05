@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/models/meal.dart';
+import 'package:foodapp/widgets/dummy_data.dart';
 import './screens/category_info_screen.dart';
 import 'screens/category_info_screen.dart';
 import "./screens/single_meal_screen.dart";
@@ -24,8 +26,27 @@ class _MyAppState extends State<MyApp> {
     "vegan": false
   };
 
+  List<Meal> availableMeals = DUMMY_MEALS;
+
   void _setFilters(Map<String, bool> filterData) {
-    print("HELLO IR WORKS!");
+    setState(() {
+      filters = filterData;
+      availableMeals = DUMMY_MEALS.where((meal) {
+        if (filters["gluten"] as bool && !meal.isGlutenFree) {
+          return false;
+        }
+        if (filters["lactose"] as bool && !meal.isLactoseFree) {
+          return false;
+        }
+        if (filters["vegetarian"] as bool && !meal.isVegetarian) {
+          return false;
+        }
+        if (filters["vegan"] as bool && !meal.isVegan) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
   }
 
   @override
@@ -50,10 +71,9 @@ class _MyAppState extends State<MyApp> {
       //initialRoute: "/",
       routes: {
         "/": (ctx) => const TabsScreeen(),
-        CategoryInfo.routeName: (ctx) => const CategoryInfo(),
+        CategoryInfo.routeName: (ctx) => CategoryInfo(availableMeals),
         SingleMealScreen.routeName: (ctx) => const SingleMealScreen(),
-        FilterScreen.routeName: (ctx) =>
-            FilterScreen(_setFilters as VoidCallback)
+        FilterScreen.routeName: (ctx) => FilterScreen(_setFilters, filters)
       },
     );
   }

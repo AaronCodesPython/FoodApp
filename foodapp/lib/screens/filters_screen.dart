@@ -2,8 +2,9 @@ import "package:flutter/material.dart";
 import "../widgets/main_drawer.dart";
 
 class FilterScreen extends StatefulWidget {
-  Function setFiltersFunction;
-  FilterScreen(this.setFiltersFunction);
+  Function(Map<String, bool>) setFiltersFunction;
+  final Map<String, bool> currentFilters;
+  FilterScreen(this.setFiltersFunction, this.currentFilters);
   static const String routeName = "/filters";
 
   @override
@@ -17,15 +18,32 @@ class _FilterScreenState extends State<FilterScreen> {
   bool _lactosefree = false;
 
   @override
+  void initState() {
+    _glutenFree = widget.currentFilters["gluten"] as bool;
+    _lactosefree = widget.currentFilters["lactose"] as bool;
+    _vegetarian = widget.currentFilters["vegetarian"] as bool;
+    _vegan = widget.currentFilters["vegan"] as bool;
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Your Filters"),
         actions: [
           IconButton(
-            icon: Icon(Icons.save),
-            onPressed: () {}, //TODO
-          )
+              icon: Icon(Icons.save),
+              onPressed: () {
+                final selectedFilters = {
+                  "gluten": _glutenFree,
+                  "lactose": _lactosefree,
+                  "vegetarian": _vegetarian,
+                  "vegan": _vegan
+                };
+                widget.setFiltersFunction(selectedFilters);
+              })
         ],
       ),
       body: Column(children: [
@@ -39,6 +57,7 @@ class _FilterScreenState extends State<FilterScreen> {
             children: [
               SwitchListTile(
                   title: Text("Lactose-Free"),
+                  activeColor: Theme.of(context).primaryColor,
                   subtitle: Text("Only include Lactose-Free meals...",
                       style: Theme.of(context).textTheme.bodyMedium),
                   value: _lactosefree,
@@ -49,6 +68,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   }),
               SwitchListTile(
                   title: Text("Gluten-Free"),
+                  activeColor: Theme.of(context).primaryColor,
                   subtitle: Text("Only include Gluten-Free meals...",
                       style: Theme.of(context).textTheme.bodyMedium),
                   value: _glutenFree,
@@ -59,6 +79,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   }),
               SwitchListTile(
                   title: Text("Vegetarian"),
+                  activeColor: Theme.of(context).primaryColor,
                   subtitle: Text("Only include Vegetarian meals...",
                       style: Theme.of(context).textTheme.bodyMedium),
                   value: _vegetarian,
@@ -69,6 +90,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   }),
               SwitchListTile(
                   title: Text("Vegan"),
+                  activeColor: Theme.of(context).primaryColor,
                   subtitle: Text("Only include Vegan meals...",
                       style: Theme.of(context).textTheme.bodyMedium),
                   value: _vegan,

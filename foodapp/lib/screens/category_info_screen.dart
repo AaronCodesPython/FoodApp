@@ -5,8 +5,8 @@ import "../models/meal.dart";
 
 class CategoryInfo extends StatefulWidget {
   static const routeName = "/category_meals";
-
-  const CategoryInfo({Key? key}) : super(key: key);
+  final List<Meal> availableMeals;
+  CategoryInfo(this.availableMeals);
 
   @override
   State<CategoryInfo> createState() => _CategoryInfoState();
@@ -26,7 +26,7 @@ class _CategoryInfoState extends State<CategoryInfo> {
       catTitle = routArgs["title"];
       final catId = routArgs["Id"];
       backColor = routArgs["bgColor"] as Color;
-      filteredMeals = DUMMY_MEALS.where((item) {
+      filteredMeals = widget.availableMeals.where((item) {
         return item.categories.contains(catId);
       }).toList();
       _loadedInitData = true;
